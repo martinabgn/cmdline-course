@@ -1,7 +1,8 @@
-#!/bin/bash
-# This script computes word frequency list from a text file
+#! /bin/bash
 
-for book in ../data/*.txt; do
-  cat "$book" | tr '[:upper:]' '[:lower:]' | tr -c '[:alnum:]' '[\n*]' | sort | uniq -c | sort -nr > "../results/$(basename "$book" .txt).freq.txt"
-done
-
+cat $1 |
+tr -s '[:space:]' '\n' |
+tr -d '[:punct:]' |
+sort | 
+uniq -c | 
+sort -nr > $2
